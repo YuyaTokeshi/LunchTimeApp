@@ -30,7 +30,7 @@
         {
             this.label1 = new System.Windows.Forms.Label();
             this.GenreComboBox = new System.Windows.Forms.ComboBox();
-            this.ResultButton = new System.Windows.Forms.Button();
+            this.ResultFormButton = new System.Windows.Forms.Button();
             this.BackButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
@@ -51,14 +51,14 @@
             this.GenreComboBox.Size = new System.Drawing.Size(121, 20);
             this.GenreComboBox.TabIndex = 1;
             // 
-            // ResultButton
+            // ResultFormButton
             // 
-            this.ResultButton.Location = new System.Drawing.Point(100, 74);
-            this.ResultButton.Name = "ResultButton";
-            this.ResultButton.Size = new System.Drawing.Size(95, 23);
-            this.ResultButton.TabIndex = 2;
-            this.ResultButton.Text = "ランチを決める！";
-            this.ResultButton.UseVisualStyleBackColor = true;
+            this.ResultFormButton.Location = new System.Drawing.Point(100, 74);
+            this.ResultFormButton.Name = "ResultFormButton";
+            this.ResultFormButton.Size = new System.Drawing.Size(95, 23);
+            this.ResultFormButton.TabIndex = 2;
+            this.ResultFormButton.Text = "ランチを決める！";
+            this.ResultFormButton.UseVisualStyleBackColor = true;
             // 
             // BackButton
             // 
@@ -75,7 +75,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(304, 141);
             this.Controls.Add(this.BackButton);
-            this.Controls.Add(this.ResultButton);
+            this.Controls.Add(this.ResultFormButton);
             this.Controls.Add(this.GenreComboBox);
             this.Controls.Add(this.label1);
             this.Name = "ChoiceForm";
@@ -89,7 +89,7 @@
 
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ComboBox GenreComboBox;
-        private System.Windows.Forms.Button ResultButton;
+        private System.Windows.Forms.Button ResultFormButton;
         private System.Windows.Forms.Button BackButton;
     }
 }
