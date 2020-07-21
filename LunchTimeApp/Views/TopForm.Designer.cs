@@ -51,6 +51,7 @@
             this.ChoiceFormButton.TabIndex = 1;
             this.ChoiceFormButton.Text = "ランチを決める！";
             this.ChoiceFormButton.UseVisualStyleBackColor = true;
+            this.ChoiceFormButton.Click += new System.EventHandler(this.ChoiceFormButton_Click);
             // 
             // ViewFormButton
             // 
@@ -60,6 +61,7 @@
             this.ViewFormButton.TabIndex = 2;
             this.ViewFormButton.Text = "店舗ビュー";
             this.ViewFormButton.UseVisualStyleBackColor = true;
+            this.ViewFormButton.Click += new System.EventHandler(this.ViewFormButton_Click);
             // 
             // CloseButton
             // 
@@ -69,6 +71,7 @@
             this.CloseButton.TabIndex = 3;
             this.CloseButton.Text = "終了";
             this.CloseButton.UseVisualStyleBackColor = true;
+            this.CloseButton.Click += new System.EventHandler(this.CloseButton_Click);
             // 
             // TopForm
             // 
@@ -81,6 +84,7 @@
             this.Controls.Add(this.label1);
             this.Name = "TopForm";
             this.Text = "ランチ決めアプリ";
+            this.Load += new System.EventHandler(this.TopForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
