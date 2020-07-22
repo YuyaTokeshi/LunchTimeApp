@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.label1 = new System.Windows.Forms.Label();
-            this.listBox1 = new System.Windows.Forms.ListBox();
+            this.ShopListBox = new System.Windows.Forms.ListBox();
             this.DeleteButton = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -49,16 +49,14 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "現在登録されている店舗";
             // 
-            // listBox1
+            // ShopListBox
             // 
-            this.listBox1.FormattingEnabled = true;
-            this.listBox1.ItemHeight = 12;
-            this.listBox1.Items.AddRange(new object[] {
-            "介そば"});
-            this.listBox1.Location = new System.Drawing.Point(28, 42);
-            this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(155, 112);
-            this.listBox1.TabIndex = 1;
+            this.ShopListBox.FormattingEnabled = true;
+            this.ShopListBox.ItemHeight = 12;
+            this.ShopListBox.Location = new System.Drawing.Point(28, 42);
+            this.ShopListBox.Name = "ShopListBox";
+            this.ShopListBox.Size = new System.Drawing.Size(155, 112);
+            this.ShopListBox.TabIndex = 1;
             // 
             // DeleteButton
             // 
@@ -68,6 +66,7 @@
             this.DeleteButton.TabIndex = 2;
             this.DeleteButton.Text = "選択した店舗を削除";
             this.DeleteButton.UseVisualStyleBackColor = true;
+            this.DeleteButton.Click += new System.EventHandler(this.DeleteButton_Click);
             // 
             // label2
             // 
@@ -128,6 +127,7 @@
             this.BackButton.TabIndex = 9;
             this.BackButton.Text = "戻る";
             this.BackButton.UseVisualStyleBackColor = true;
+            this.BackButton.Click += new System.EventHandler(this.BackButton_Click);
             // 
             // ViewForm
             // 
@@ -142,10 +142,11 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.DeleteButton);
-            this.Controls.Add(this.listBox1);
+            this.Controls.Add(this.ShopListBox);
             this.Controls.Add(this.label1);
             this.Name = "ViewForm";
             this.Text = "ランチ決めアプリ";
+            this.Load += new System.EventHandler(this.ViewForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -154,7 +155,7 @@
         #endregion
 
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.ListBox listBox1;
+        private System.Windows.Forms.ListBox ShopListBox;
         private System.Windows.Forms.Button DeleteButton;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;

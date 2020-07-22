@@ -13,6 +13,11 @@ namespace LunchTimeApp
         public GetGenreController()
         {
         }
+
+        /// <summary>
+        /// 取得したDataSetをDataTable型に変更して戻す。
+        /// </summary>
+        /// <returns></returns>
         public DataTable GetGenre()
         {
             try

@@ -22,6 +22,11 @@ namespace LunchTimeApp
             this.Close();
         }
 
+        /// <summary>
+        /// 表示された店舗をGoogleで検索する
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void SearchButton_Click(object sender, EventArgs e)
         {
             string shop = ResultLabel.Text;

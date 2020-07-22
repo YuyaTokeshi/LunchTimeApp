@@ -10,15 +10,9 @@ using System.Windows.Forms;
 
 namespace LunchTimeApp
 {
-    class GenreModel
+    class GenreModel:Model
     {
-        SqlConnection connection;
-        public GenreModel()
-        {
-            var connectionString = ConfigurationManager.ConnectionStrings["sqlsvr"].ConnectionString;
-            connection = new SqlConnection(connectionString);
-            Connect();
-        }
+
         public DataSet GetGenre()
         {
             try
@@ -28,19 +22,21 @@ namespace LunchTimeApp
                     Connection = connection
                 };
 
-                //StringBuilder型を用いて見やすく改行された状態でSQLコマンドを入力する
+                // StringBuilder型を用いて見やすく改行された状態でSQLコマンドを入力する
                 StringBuilder query = new StringBuilder();
+
+                // DB内ジャンルマスタよりデータを取得
                 query.Append("SELECT ");
                 query.Append("GENRE_ID ,");
                 query.Append("GENRE_NAME ");
                 query.Append("FROM ");
                 query.Append("GENRE_MASTER");
 
-                //StringBuilder型からString型へ変更
+                // StringBuilder型からString型へ変更
                 command.CommandText = query.ToString();
                 DataSet genre = new DataSet();
 
-                //読み込んだデータをgenreへ代入
+                // 読み込んだデータをgenreへ代入
                 using (SqlDataAdapter adapter = new SqlDataAdapter())
                 {
                     //adapterにもInsert等がある為、Selectコマンドを入力
@@ -49,18 +45,6 @@ namespace LunchTimeApp
                     adapter.Fill(genre, "GENRE_MASTER");
                 }
                 return genre;
-            }
-            catch(Exception ex)
-            {
-                throw new Exception(ex.Message);
-            }
-        }
-
-        private void Connect()
-        {
-            try
-            {
-                connection.Open();
             }
             catch(Exception ex)
             {

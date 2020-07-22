@@ -17,12 +17,18 @@ namespace LunchTimeApp
             InitializeComponent();
         }
 
+
+        /// <summary>
+        /// フォームを起動後、DBよりジャンル名を取得
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         public void ChoiceForm_Load(object sender, EventArgs e)
         {
             GetGenreController getGenreController = new GetGenreController();
             DataTable genre = getGenreController.GetGenre();
 
-            //取得したDataTable型変数genreをListに代入
+            // 取得したDataTable型変数genreをListに代入
             List<ItemSet> src = new List<ItemSet>();
             foreach (DataRow row in genre.AsEnumerable())
             {
@@ -34,6 +40,11 @@ namespace LunchTimeApp
             this.GenreComboBox.ValueMember = "ItemValue";
         }
 
+        /// <summary>
+        /// ResultFormを開き、取得した店舗のリストからランダムに1店舗表示する
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ResultFormButton_Click(object sender, EventArgs e)
         {
             ResultForm resultForm = new ResultForm();
@@ -42,14 +53,17 @@ namespace LunchTimeApp
             GetShopController getShopController = new GetShopController();
             DataTable shop = getShopController.GetShop(genre);
 
+            // 取得したDataTableをListに格納する
             List<string> shopList = shop.AsEnumerable().Select(row => row[0].ToString()).ToList<string>();
             
+            // DBにデータが無かった時の例外スロー
             if(shopList.Count == 0)
             {
                 MessageBox.Show("リストがありません。","エラー");
             }
             else
             {
+                // Listの中からランダムに1店舗表示
                 Random random = new Random();
                 int i = random.Next(0, shopList.Count);
                 string shopResult = shopList[i];
@@ -71,5 +85,6 @@ namespace LunchTimeApp
         {
             this.Close();
         }
+
     }
 }
