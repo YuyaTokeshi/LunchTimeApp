@@ -102,7 +102,7 @@
         #endregion
 
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label ResultLabel;
+        public System.Windows.Forms.Label ResultLabel;
         private System.Windows.Forms.Button SearchButton;
         private System.Windows.Forms.Button ChoiceFormButton;
         private System.Windows.Forms.Button TopFormButton;

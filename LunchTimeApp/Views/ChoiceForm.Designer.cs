@@ -59,6 +59,7 @@
             this.ResultFormButton.TabIndex = 2;
             this.ResultFormButton.Text = "ランチを決める！";
             this.ResultFormButton.UseVisualStyleBackColor = true;
+            this.ResultFormButton.Click += new System.EventHandler(this.ResultFormButton_Click);
             // 
             // BackButton
             // 

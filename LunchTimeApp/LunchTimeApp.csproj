@@ -47,6 +47,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Models\ShopModel.cs" />
+    <Compile Include="Controllers\GetShopController.cs" />
     <Compile Include="Views\ChoiceForm.cs">
       <SubType>Form</SubType>
     </Compile>

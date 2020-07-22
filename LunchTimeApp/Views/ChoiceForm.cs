@@ -21,8 +21,44 @@ namespace LunchTimeApp
         {
             GetGenreController getGenreController = new GetGenreController();
             DataTable genre = getGenreController.GetGenre();
-            //取得したDataTableをLINQでリスト型へ変更、[1]列目のみ取得してコンボボックスへ表示
-            this.GenreComboBox.DataSource = genre.AsEnumerable().Select(m => m.ItemArray[1]).ToList();
+
+            //取得したDataTable型変数genreをListに代入
+            List<ItemSet> src = new List<ItemSet>();
+            foreach (DataRow row in genre.AsEnumerable())
+            {
+                src.Add(new ItemSet((int)row[0], row[1].ToString()));
+            }
+
+            this.GenreComboBox.DataSource = src;
+            this.GenreComboBox.DisplayMember = "ItemDisp";
+            this.GenreComboBox.ValueMember = "ItemValue";
+        }
+
+        private void ResultFormButton_Click(object sender, EventArgs e)
+        {
+            string genre = GenreComboBox.SelectedValue.ToString();    
+            GetShopController getShopController = new GetShopController();
+            DataTable shop = getShopController.GetShop(genre);
+
+            List<string> shopList = shop.AsEnumerable().Select(row => row[0].ToString()).ToList<string>();
+            
+            Random random = new Random();
+            int i = random.Next(1, shopList.Count);
+            string shopResult = shopList[i];
+
+            ResultForm resultForm = new ResultForm();
+            resultForm.Show();
+            resultForm.ResultLabel.Text = shopResult;
+        }
+        public class ItemSet
+        {
+            public int ItemValue { get; set; }
+            public string ItemDisp { get; set; }
+            public ItemSet(int v, String s)
+            {
+                ItemValue = v;
+                ItemDisp = s;
+            }
         }
     }
 }

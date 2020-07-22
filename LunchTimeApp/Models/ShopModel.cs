@@ -10,16 +10,16 @@ using System.Windows.Forms;
 
 namespace LunchTimeApp
 {
-    class GenreModel
+    class ShopModel
     {
         SqlConnection connection;
-        public GenreModel()
+        public ShopModel()
         {
             var connectionString = ConfigurationManager.ConnectionStrings["sqlsvr"].ConnectionString;
             connection = new SqlConnection(connectionString);
             Connect();
         }
-        public DataSet GetGenre()
+        public DataSet GetShop(string genre)
         {
             try
             {
@@ -30,15 +30,17 @@ namespace LunchTimeApp
 
                 //StringBuilder型を用いて見やすく改行された状態でSQLコマンドを入力する
                 StringBuilder query = new StringBuilder();
-                query.Append("SELECT ");
-                query.Append("GENRE_ID ,");
-                query.Append("GENRE_NAME ");
+                query.Append("SELECT SHOP_NAME ");
                 query.Append("FROM ");
-                query.Append("GENRE_MASTER");
+                query.Append("SHOP_TBL st, ");
+                query.Append("GENRE_MASTER gm ");
+                query.Append("WHERE st.GENRE_ID = gm.GENRE_ID ");
+                query.Append("AND st.DELETE_FLG != 1");
+                query.AppendFormat("AND gm.GENRE_ID = '{0}'", genre);
 
                 //StringBuilder型からString型へ変更
                 command.CommandText = query.ToString();
-                DataSet genre = new DataSet();
+                DataSet shop = new DataSet();
 
                 //読み込んだデータをgenreへ代入
                 using (SqlDataAdapter adapter = new SqlDataAdapter())
@@ -46,23 +48,22 @@ namespace LunchTimeApp
                     //adapterにもInsert等がある為、Selectコマンドを入力
                     adapter.SelectCommand = new SqlCommand(query.ToString(), connection);
                     //Fill(DataSet型変数, DataTableにつけたい名前)
-                    adapter.Fill(genre, "GENRE_MASTER");
+                    adapter.Fill(shop, "GETSHOP_TBL");
                 }
-                return genre;
+                return shop;
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 throw new Exception(ex.Message);
             }
         }
-
         private void Connect()
         {
             try
             {
                 connection.Open();
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 throw new Exception(ex.Message);
             }
