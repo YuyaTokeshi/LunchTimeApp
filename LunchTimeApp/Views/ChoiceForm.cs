@@ -36,19 +36,25 @@ namespace LunchTimeApp
 
         private void ResultFormButton_Click(object sender, EventArgs e)
         {
+            ResultForm resultForm = new ResultForm();
+            resultForm.Show();
             string genre = GenreComboBox.SelectedValue.ToString();    
             GetShopController getShopController = new GetShopController();
             DataTable shop = getShopController.GetShop(genre);
 
             List<string> shopList = shop.AsEnumerable().Select(row => row[0].ToString()).ToList<string>();
             
-            Random random = new Random();
-            int i = random.Next(1, shopList.Count);
-            string shopResult = shopList[i];
-
-            ResultForm resultForm = new ResultForm();
-            resultForm.Show();
-            resultForm.ResultLabel.Text = shopResult;
+            if(shopList.Count == 0)
+            {
+                MessageBox.Show("リストがありません。","エラー");
+            }
+            else
+            {
+                Random random = new Random();
+                int i = random.Next(0, shopList.Count);
+                string shopResult = shopList[i];
+                resultForm.ResultLabel.Text = shopResult;
+            }
         }
         public class ItemSet
         {
@@ -59,6 +65,11 @@ namespace LunchTimeApp
                 ItemValue = v;
                 ItemDisp = s;
             }
+        }
+
+        private void BackButton_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

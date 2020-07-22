@@ -69,6 +69,7 @@
             this.BackButton.TabIndex = 3;
             this.BackButton.Text = "戻る";
             this.BackButton.UseVisualStyleBackColor = true;
+            this.BackButton.Click += new System.EventHandler(this.BackButton_Click);
             // 
             // ChoiceForm
             // 
