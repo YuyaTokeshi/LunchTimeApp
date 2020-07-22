@@ -51,7 +51,13 @@ namespace LunchTimeApp
 
         private void DeleteButton_Click(object sender, EventArgs e)
         {
-
+            string shop = ShopListBox.SelectedValue.ToString();
+            DeleteShopController deleteShopController = new DeleteShopController();
+            deleteShopController.DeleteShop(shop);
+            MessageBox.Show("対象の店舗が正常に削除されました。","削除完了");
+            ViewForm viewForm = new ViewForm();
+            viewForm.Show();
+            this.Close();
         }
     }
 
