@@ -47,6 +47,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Models\InsertShopModel.cs" />
+    <Compile Include="Controllers\InsertShopController.cs" />
     <Compile Include="Models\DeleteShopModel.cs" />
     <Compile Include="Controllers\DeleteShopController.cs" />
     <Compile Include="Models\Model.cs" />

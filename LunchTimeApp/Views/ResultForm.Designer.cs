@@ -53,6 +53,7 @@
             this.ResultLabel.TabIndex = 1;
             this.ResultLabel.Text = "介そば";
             this.ResultLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.ResultLabel.UseMnemonic = false;
             // 
             // SearchButton
             // 

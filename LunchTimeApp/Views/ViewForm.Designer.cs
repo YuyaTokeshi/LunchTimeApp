@@ -45,9 +45,9 @@
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(26, 27);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(124, 12);
+            this.label1.Size = new System.Drawing.Size(93, 12);
             this.label1.TabIndex = 0;
-            this.label1.Text = "現在登録されている店舗";
+            this.label1.Text = "■店舗を削除する";
             // 
             // ShopListBox
             // 
@@ -71,11 +71,11 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(231, 24);
+            this.label2.Location = new System.Drawing.Point(237, 27);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(86, 12);
+            this.label2.Size = new System.Drawing.Size(117, 12);
             this.label2.TabIndex = 3;
-            this.label2.Text = "店舗を新規追加";
+            this.label2.Text = "■店舗を新規追加する";
             // 
             // label3
             // 
@@ -118,6 +118,7 @@
             this.InsertButton.TabIndex = 8;
             this.InsertButton.Text = "店舗を登録";
             this.InsertButton.UseVisualStyleBackColor = true;
+            this.InsertButton.Click += new System.EventHandler(this.InsertButton_Click);
             // 
             // BackButton
             // 

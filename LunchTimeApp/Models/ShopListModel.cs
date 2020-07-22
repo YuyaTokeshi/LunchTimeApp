@@ -27,7 +27,8 @@ namespace LunchTimeApp
                 // DBより店舗名データを取得
                 query.Append("SELECT SHOP_ID, SHOP_NAME ");
                 query.Append("FROM SHOP_TBL ");
-                query.Append("WHERE DELETE_FLG != 1");
+                query.Append("WHERE DELETE_FLG != 1 ");
+                query.Append("ORDER BY SHOP_NAME");
 
                 // StringBuilder型からString型へ変更
                 command.CommandText = query.ToString();
