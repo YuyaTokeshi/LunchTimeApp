@@ -1,17 +1,25 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace LunchTimeApp
 {
     class DeleteShopController
     {
+        /// <summary>
+        /// 選択された店舗に削除フラグを立てるメソッド
+        /// </summary>
+        /// <param name="shop"></param>
         public void DeleteShop(string shop)
         {
-            DeleteShopModel deleteShopModel = new DeleteShopModel();
-            deleteShopModel.DeleteShop(shop);
+            try
+            {
+                DeleteShopModel deleteShopModel = new DeleteShopModel();
+                deleteShopModel.DeleteShop(shop);
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
     }
 }

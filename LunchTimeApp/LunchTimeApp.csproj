@@ -52,6 +52,7 @@
     <Compile Include="Models\DeleteShopModel.cs" />
     <Compile Include="Controllers\DeleteShopController.cs" />
     <Compile Include="Models\Model.cs" />
+    <Compile Include="Models\Model\ItemSet.cs" />
     <Compile Include="Models\ShopListModel.cs" />
     <Compile Include="Controllers\ShopListController.cs" />
     <Compile Include="Models\ShopModel.cs" />

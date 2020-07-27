@@ -1,11 +1,6 @@
-﻿using System;
+﻿using LunchTimeApp.Models.Model;
+using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace LunchTimeApp
@@ -24,47 +19,28 @@ namespace LunchTimeApp
         /// <param name="e"></param>
         private void ViewForm_Load(object sender, EventArgs e)
         {  
-            // 店舗リストの取得準備
-            ShopListController shopListController = new ShopListController();
-            DataTable shop = shopListController.GetShop();
-
-            // 取得したDataTable型変数genreをListに代入
-            List<ItemSet> shopList = new List<ItemSet>();
-            foreach (DataRow row in shop.AsEnumerable())
+            try
             {
-                shopList.Add(new ItemSet((int)row[0], row[1].ToString()));
+                // 店舗リストの取得準備
+                ShopListController shopListController = new ShopListController();
+                List<ItemSet> shop = shopListController.GetShop();
+
+                // ListBoxに表示名と値を格納する
+                this.ShopListBox.DataSource = shop;
+                this.ShopListBox.DisplayMember = "ItemDisp";
+                this.ShopListBox.ValueMember = "ItemValue";
+
+                // ジャンルリストの取得準備
+                GetGenreController getGenreController = new GetGenreController();
+                List<ItemSet> genreList = getGenreController.GetGenre();
+
+                this.GenreComboBox.DataSource = genreList;
+                this.GenreComboBox.DisplayMember = "ItemDisp";
+                this.GenreComboBox.ValueMember = "ItemValue";
             }
-
-            // ListBoxに表示名と値を格納する
-            this.ShopListBox.DataSource = shopList;
-            this.ShopListBox.DisplayMember = "ItemDisp";
-            this.ShopListBox.ValueMember = "ItemValue";
-
-            // ジャンルリストの取得準備
-            GetGenreController getGenreController = new GetGenreController();
-            DataTable genre = getGenreController.GetGenre();
-
-            // 取得したDataTable型変数genreをListに代入
-            List<ItemSet> genreList = new List<ItemSet>();
-            foreach (DataRow row in genre.AsEnumerable())
+            catch(Exception ex)
             {
-                genreList.Add(new ItemSet((int)row[0], row[1].ToString()));
-            }
-
-            this.GenreComboBox.DataSource = genreList;
-            this.GenreComboBox.DisplayMember = "ItemDisp";
-            this.GenreComboBox.ValueMember = "ItemValue";
-        }
-
-        // Listに使用するプロパティのクラス
-        public class ItemSet
-        {
-            public int ItemValue { get; set; }
-            public string ItemDisp { get; set; }
-            public ItemSet(int v, String s)
-            {
-                ItemValue = v;
-                ItemDisp = s;
+                MessageBox.Show(ex.Message);
             }
         }
 
@@ -80,13 +56,20 @@ namespace LunchTimeApp
         /// <param name="e"></param>
         private void DeleteButton_Click(object sender, EventArgs e)
         {
-            string shop = ShopListBox.SelectedValue.ToString();
-            DeleteShopController deleteShopController = new DeleteShopController();
-            deleteShopController.DeleteShop(shop);
-            MessageBox.Show("対象の店舗が正常に削除されました。", "削除完了");
-            ViewForm viewForm = new ViewForm();
-            viewForm.Show();
-            this.Close();
+            try
+            {
+                string shop = ShopListBox.SelectedValue.ToString();
+                DeleteShopController deleteShopController = new DeleteShopController();
+                deleteShopController.DeleteShop(shop);
+                MessageBox.Show("対象の店舗が正常に削除されました。", "削除完了");
+                ViewForm viewForm = new ViewForm();
+                viewForm.Show();
+                this.Close();
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         /// <summary>
@@ -100,18 +83,16 @@ namespace LunchTimeApp
             if (this.ShopNameTextBox.Text == "")
             {
                 MessageBox.Show("店舗名を入力してください。", "エラー");
+                return;
             }
-            else
-            {
-                string genreID = GenreComboBox.SelectedValue.ToString();
-                string shopName = ShopNameTextBox.Text;
-                InsertShopController insertShopController = new InsertShopController();
-                insertShopController.InsertShop(genreID, shopName);
-                MessageBox.Show("対象の店舗が正常に登録されました。", "登録完了");
-                ViewForm viewForm = new ViewForm();
-                viewForm.Show();
-                this.Close();
-            }
+            string genreID = GenreComboBox.SelectedValue.ToString();
+            string shopName = ShopNameTextBox.Text;
+            InsertShopController insertShopController = new InsertShopController();
+            insertShopController.InsertShop(genreID, shopName);
+            MessageBox.Show("対象の店舗が正常に登録されました。", "登録完了");
+            ViewForm viewForm = new ViewForm();
+            viewForm.Show();
+            this.Close();
         }
     }
 

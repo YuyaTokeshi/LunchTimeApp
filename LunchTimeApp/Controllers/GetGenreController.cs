@@ -1,10 +1,8 @@
-﻿using System;
+﻿using LunchTimeApp.Models.Model;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace LunchTimeApp
 {
@@ -14,18 +12,24 @@ namespace LunchTimeApp
         /// DB接続しDataSetを取得、DataTable型に変更して戻す。
         /// </summary>
         /// <returns></returns>
-        public DataTable GetGenre()
+        public List<ItemSet> GetGenre()
         {
             try
             {
                 GenreModel genreModel = new GenreModel();
                 DataTable genre = genreModel.GetGenre().Tables["GENRE_MASTER"];
-                return genre;
+
+                // 取得したDataTable型変数genreをListに代入
+                List<ItemSet> genreList = new List<ItemSet>();
+                foreach (DataRow row in genre.AsEnumerable())
+                {
+                    genreList.Add(new ItemSet((int)row[0], row[1].ToString()));
+                }
+                return genreList;
             }
-            catch (Exception ex)
+            catch(Exception ex)
             {
-                MessageBox.Show(ex.Message);
-                throw new Exception();
+                throw new Exception(ex.Message);
             }
         }
     }

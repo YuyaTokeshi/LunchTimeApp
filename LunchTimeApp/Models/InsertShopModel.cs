@@ -1,17 +1,16 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace LunchTimeApp
 {
     class InsertShopModel:Model
     {
+        /// <summary>
+        /// 入力された店舗とジャンルをDBに登録する
+        /// </summary>
+        /// <param name="genreID"></param>
+        /// <param name="shopName"></param>
         public void InsertShop(string genreID, string shopName)
         {
             try
