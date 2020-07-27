@@ -51,7 +51,6 @@
             this.ResultLabel.Name = "ResultLabel";
             this.ResultLabel.Size = new System.Drawing.Size(200, 40);
             this.ResultLabel.TabIndex = 1;
-            this.ResultLabel.Text = "介そば";
             this.ResultLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.ResultLabel.UseMnemonic = false;
             // 

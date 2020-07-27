@@ -17,7 +17,6 @@ namespace LunchTimeApp
             InitializeComponent();
         }
 
-
         /// <summary>
         /// フォームを起動後、DBよりジャンル名を取得
         /// </summary>
@@ -29,13 +28,15 @@ namespace LunchTimeApp
             DataTable genre = getGenreController.GetGenre();
 
             // 取得したDataTable型変数genreをListに代入
-            List<ItemSet> src = new List<ItemSet>();
+            List<ItemSet> genreList = new List<ItemSet>();
             foreach (DataRow row in genre.AsEnumerable())
             {
-                src.Add(new ItemSet((int)row[0], row[1].ToString()));
+                genreList.Add(new ItemSet((int)row[0], row[1].ToString()));
             }
 
-            this.GenreComboBox.DataSource = src;
+            genreList.Add(new ItemSet(0, "お任せ！"));
+            // 作成したリストの値と表示名をコンボボックスに代入
+            this.GenreComboBox.DataSource = genreList;
             this.GenreComboBox.DisplayMember = "ItemDisp";
             this.GenreComboBox.ValueMember = "ItemValue";
         }
@@ -48,13 +49,24 @@ namespace LunchTimeApp
         private void ResultFormButton_Click(object sender, EventArgs e)
         {
             ResultForm resultForm = new ResultForm();
-            resultForm.Show();
-            string genre = GenreComboBox.SelectedValue.ToString();    
-            GetShopController getShopController = new GetShopController();
-            DataTable shop = getShopController.GetShop(genre);
+            string genre = GenreComboBox.SelectedValue.ToString();
+
+            DataTable shop;
+            
+            // お任せを選んだ場合は全店舗のリスト
+            if(genre == "0")
+            {
+                ShopListController shopListController = new ShopListController();
+                shop = shopListController.GetShop();
+            }
+            else
+            {
+                GetShopController getShopController = new GetShopController();
+                shop = getShopController.GetShop(genre);
+            }
 
             // 取得したDataTableをListに格納する
-            List<string> shopList = shop.AsEnumerable().Select(row => row[0].ToString()).ToList<string>();
+            List<string> shopList = shop.AsEnumerable().Select(row => row[1].ToString()).ToList<string>();
             
             // DBにデータが無かった時の例外スロー
             if(shopList.Count == 0)
@@ -64,6 +76,7 @@ namespace LunchTimeApp
             else
             {
                 // Listの中からランダムに1店舗表示
+                resultForm.Show();
                 Random random = new Random();
                 int i = random.Next(0, shopList.Count);
                 string shopResult = shopList[i];
@@ -85,6 +98,5 @@ namespace LunchTimeApp
         {
             this.Close();
         }
-
     }
 }

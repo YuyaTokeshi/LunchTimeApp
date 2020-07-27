@@ -37,9 +37,9 @@ namespace LunchTimeApp
                 // 読み込んだデータをgenreへ代入
                 using (SqlDataAdapter adapter = new SqlDataAdapter())
                 {
-                    //adapterにもInsert等がある為、Selectコマンドを入力
+                    // adapterにもInsert等がある為、Selectコマンドを入力
                     adapter.SelectCommand = new SqlCommand(query.ToString(), connection);
-                    //Fill(DataSet型変数, DataTableにつけたい名前)
+                    // Fill(DataSet型変数, DataTableにつけたい名前)
                     adapter.Fill(shopList, "SHOPLIST_TBL");
                 }
                 return shopList;

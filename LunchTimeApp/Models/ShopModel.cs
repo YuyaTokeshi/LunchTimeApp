@@ -24,8 +24,8 @@ namespace LunchTimeApp
                 // StringBuilder型を用いて見やすく改行された状態でSQLコマンドを入力する
                 StringBuilder query = new StringBuilder();
 
-                // テーブルを内部結合し選択ジャンルに該当する店舗を抽出
-                query.Append("SELECT SHOP_NAME ");
+                // テーブルを内部結合、選択されたジャンルに該当する店舗を抽出
+                query.Append("SELECT SHOP_ID, SHOP_NAME ");
                 query.Append("FROM ");
                 query.Append("SHOP_TBL st, ");
                 query.Append("GENRE_MASTER gm ");
@@ -37,12 +37,12 @@ namespace LunchTimeApp
                 command.CommandText = query.ToString();
                 DataSet shop = new DataSet();
 
-                // 読み込んだデータをgenreへ代入
+                // 読み込んだデータをDataSet型shopへ代入
                 using (SqlDataAdapter adapter = new SqlDataAdapter())
                 {
-                    //adapterにもInsert等がある為、Selectコマンドを入力
+                    // adapterにもInsert等がある為、Selectコマンドを入力
                     adapter.SelectCommand = new SqlCommand(query.ToString(), connection);
-                    //Fill(DataSet型変数, DataTableにつけたい名前)
+                    // Fill(DataSet型変数, DataTableにつけたい名前)
                     adapter.Fill(shop, "GETSHOP_TBL");
                 }
                 return shop;

@@ -10,12 +10,8 @@ namespace LunchTimeApp
 {
     class GetGenreController
     {
-        public GetGenreController()
-        {
-        }
-
         /// <summary>
-        /// 取得したDataSetをDataTable型に変更して戻す。
+        /// DB接続しDataSetを取得、DataTable型に変更して戻す。
         /// </summary>
         /// <returns></returns>
         public DataTable GetGenre()

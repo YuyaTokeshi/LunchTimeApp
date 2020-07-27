@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TopForm));
             this.label1 = new System.Windows.Forms.Label();
             this.ChoiceFormButton = new System.Windows.Forms.Button();
             this.ViewFormButton = new System.Windows.Forms.Button();
@@ -82,9 +83,9 @@
             this.Controls.Add(this.ViewFormButton);
             this.Controls.Add(this.ChoiceFormButton);
             this.Controls.Add(this.label1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "TopForm";
             this.Text = "ランチ決めアプリ";
-            this.Load += new System.EventHandler(this.TopForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
