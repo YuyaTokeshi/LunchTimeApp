@@ -5,9 +5,16 @@ using System.Text;
 
 namespace LunchTimeApp
 {
-    class ShopListModel:Model
+    /// <summary>
+    /// 全店舗リスト取得モデル
+    /// </summary>
+    class ShopListModel : Model
     {
-        public DataSet GetShopList()
+        /// <summary>
+        /// DBより全店舗のデータを取得するメソッド
+        /// </summary>
+        /// <returns>全店舗のデータテーブル</returns>
+        public DataTable GetShopList()
         {
             try
             {
@@ -37,7 +44,8 @@ namespace LunchTimeApp
                     // Fill(DataSet型変数, DataTableにつけたい名前)
                     adapter.Fill(shopList, "SHOPLIST_TBL");
                 }
-                return shopList;
+                DataTable shopListDT = shopList.Tables["SHOPLIST_TBL"];
+                return shopListDT;
             }
             catch (Exception ex)
             {

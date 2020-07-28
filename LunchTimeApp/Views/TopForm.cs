@@ -3,6 +3,9 @@ using System.Windows.Forms;
 
 namespace LunchTimeApp
 {
+    /// <summary>
+    /// TOPのフォーム
+    /// </summary>
     public partial class TopForm : Form
     {
         public TopForm()

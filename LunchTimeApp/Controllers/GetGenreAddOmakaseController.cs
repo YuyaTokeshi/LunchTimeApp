@@ -6,20 +6,23 @@ using System.Linq;
 
 namespace LunchTimeApp
 {
+    /// <summary>
+    /// ジャンルを取得後、「お任せ」項目を追加して返すコントローラー
+    /// </summary>
     class GetGenreAddOmakaseController
     {
         /// <summary>
-        /// DB接続しDataSetを取得、DataTable型に変更して戻す。
+        /// DB接続しDataSetを取得、List<ItemSet>型に変更して戻すメソッド
         /// </summary>
-        /// <returns></returns>
+        /// <returns>ItemSet型のList</returns>
         public List<ItemSet> GetGenreAddOmakase()
         {
             try
             {
                 GenreModel genreModel = new GenreModel();
-                DataTable genre = genreModel.GetGenre().Tables["GENRE_MASTER"];
+                DataTable genre = genreModel.GetGenre();
 
-                // 取得したDataTable型変数genreをListに代入
+                // 取得したDataTable型変数genreをList<ItemSet>に代入
                 List<ItemSet> genreList = new List<ItemSet>();
                 foreach (DataRow row in genre.AsEnumerable())
                 {

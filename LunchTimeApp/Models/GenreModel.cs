@@ -5,9 +5,16 @@ using System.Text;
 
 namespace LunchTimeApp
 {
-    class GenreModel:Model
+    /// <summary>
+    /// ジャンル取得モデル
+    /// </summary>
+    class GenreModel : Model
     {
-        public DataSet GetGenre()
+        /// <summary>
+        /// DBよりジャンルを取得するメソッド
+        /// </summary>
+        /// <returns>ジャンルのデータテーブル</returns>
+        public DataTable GetGenre()
         {
             try
             {
@@ -38,7 +45,8 @@ namespace LunchTimeApp
                     // Fill(DataSet型変数, DataTableにつけたい名前)
                     adapter.Fill(genre, "GENRE_MASTER");
                 }
-                return genre;
+                DataTable genreDT = genre.Tables["GENRE_MASTER"];
+                return genreDT;
             }
             catch(Exception ex)
             {

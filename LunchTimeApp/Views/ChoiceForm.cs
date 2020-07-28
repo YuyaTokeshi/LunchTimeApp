@@ -6,6 +6,9 @@ using System.Windows.Forms;
 
 namespace LunchTimeApp
 {
+    /// <summary>
+    /// 選択ジャンルから店舗をランダムで取得するフォーム
+    /// </summary>
     public partial class ChoiceForm : Form
     {
         public ChoiceForm()
@@ -72,7 +75,7 @@ namespace LunchTimeApp
             string shopName = shop.OrderBy(_ => Guid.NewGuid()).First().ItemDisp.ToString();
             resultForm.ResultLabel.Text = shopName;
 
-            // 旧ランダムコード
+            // 旧ランダムコード(勉強用に記録しています)
             // Random random = new Random();
             // int i = random.Next(0, shop.Count);
             // string shopResult = shop[i].ItemDisp.ToString();

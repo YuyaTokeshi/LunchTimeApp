@@ -3,6 +3,9 @@ using System.Windows.Forms;
 
 namespace LunchTimeApp
 {
+    /// <summary>
+    /// 取得した店舗の中からランダムに1店舗表示するフォーム
+    /// </summary>
     public partial class ResultForm : Form
     {
         public ResultForm()

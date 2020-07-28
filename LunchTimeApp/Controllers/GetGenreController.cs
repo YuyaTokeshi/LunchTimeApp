@@ -6,26 +6,30 @@ using System.Linq;
 
 namespace LunchTimeApp
 {
+    /// <summary>
+    /// DBよりジャンルを取得するコントローラー
+    /// </summary>
     class GetGenreController
     {
         /// <summary>
-        /// DB接続しDataSetを取得、DataTable型に変更して戻す。
+        /// DB接続しDataSetを取得、List<ItemSet>型に変更して戻すメソッド
         /// </summary>
-        /// <returns></returns>
+        /// <returns>ItemSet型のList</returns>
         public List<ItemSet> GetGenre()
         {
             try
             {
                 GenreModel genreModel = new GenreModel();
-                DataTable genre = genreModel.GetGenre().Tables["GENRE_MASTER"];
+                DataTable genre = genreModel.GetGenre();
 
                 // 取得したDataTable型変数genreをListに代入
-                List<ItemSet> genreList = new List<ItemSet>();
-                foreach (DataRow row in genre.AsEnumerable())
-                {
-                    genreList.Add(new ItemSet((int)row[0], row[1].ToString()));
-                }
-                return genreList;
+                return genre.AsEnumerable().Select(row => new ItemSet((int)row[0], row[1].ToString())).ToList();
+
+                // 旧コード(勉強用に記録しています)
+                // foreach (DataRow row in genre.AsEnumerable())
+                // {
+                //     genreList.Add(new ItemSet((int)row[0], row[1].ToString()));
+                // }
             }
             catch(Exception ex)
             {

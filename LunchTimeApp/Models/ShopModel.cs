@@ -1,18 +1,21 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace LunchTimeApp
 {
-    class ShopModel:Model
+    /// <summary>
+    /// 店舗リスト取得モデル
+    /// </summary>
+    class ShopModel : Model
     {
-        public DataSet GetShop(string genre)
+        /// <summary>
+        /// DBより店舗名を取得するメソッド
+        /// </summary>
+        /// <param name="genre">選択されたジャンル</param>
+        /// <returns>取得した店舗のデータテーブル</returns>
+        public DataTable GetShop(string genre)
         {
             try
             {
@@ -45,7 +48,8 @@ namespace LunchTimeApp
                     // Fill(DataSet型変数, DataTableにつけたい名前)
                     adapter.Fill(shop, "GETSHOP_TBL");
                 }
-                return shop;
+                DataTable shopDT = shop.Tables["GETSHOP_TBL"];
+                return shopDT;
             }
             catch (Exception ex)
             {

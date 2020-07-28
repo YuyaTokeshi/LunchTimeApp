@@ -3,13 +3,16 @@ using System.Windows.Forms;
 
 namespace LunchTimeApp
 {
+    /// <summary>
+    /// 入力された店舗名とジャンルをDBに登録するコントローラー
+    /// </summary>
     class InsertShopController
     {
         /// <summary>
-        /// 入力された店舗とジャンルをDBに登録する
+        /// 入力された店舗とジャンルをDBに登録するメソッド
         /// </summary>
-        /// <param name="genreID"></param>
-        /// <param name="shopName"></param>
+        /// <param name="genreID">入力されたジャンルのID</param>
+        /// <param name="shopName">入力された店舗名</param>
         public void InsertShop(string genreID, string shopName)
         {
             try

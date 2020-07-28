@@ -5,6 +5,9 @@ using System.Windows.Forms;
 
 namespace LunchTimeApp
 {
+    /// <summary>
+    /// 店舗の登録や削除を行うフォーム
+    /// </summary>
     public partial class ViewForm : Form
     {
         public ViewForm()
@@ -34,6 +37,7 @@ namespace LunchTimeApp
                 GetGenreController getGenreController = new GetGenreController();
                 List<ItemSet> genreList = getGenreController.GetGenre();
 
+                // ComboBoxに表示名と値を格納する
                 this.GenreComboBox.DataSource = genreList;
                 this.GenreComboBox.DisplayMember = "ItemDisp";
                 this.GenreComboBox.ValueMember = "ItemValue";
@@ -58,10 +62,17 @@ namespace LunchTimeApp
         {
             try
             {
+                // 入力値の取得
                 string shop = ShopListBox.SelectedValue.ToString();
+
+                // 削除処理の実行
                 DeleteShopController deleteShopController = new DeleteShopController();
                 deleteShopController.DeleteShop(shop);
+
+                // 実行結果の表示
                 MessageBox.Show("対象の店舗が正常に削除されました。", "削除完了");
+
+                // フォームの再読み込み
                 ViewForm viewForm = new ViewForm();
                 viewForm.Show();
                 this.Close();
@@ -85,11 +96,19 @@ namespace LunchTimeApp
                 MessageBox.Show("店舗名を入力してください。", "エラー");
                 return;
             }
+
+            // 入力されたジャンルと店舗名の取得
             string genreID = GenreComboBox.SelectedValue.ToString();
             string shopName = ShopNameTextBox.Text;
+
+            // 登録処理の実行
             InsertShopController insertShopController = new InsertShopController();
             insertShopController.InsertShop(genreID, shopName);
+
+            // 実行結果の表示
             MessageBox.Show("対象の店舗が正常に登録されました。", "登録完了");
+
+            // フォームの再読み込み
             ViewForm viewForm = new ViewForm();
             viewForm.Show();
             this.Close();

@@ -1,12 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Configuration;
-using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace LunchTimeApp
 {
@@ -18,7 +12,7 @@ namespace LunchTimeApp
         protected SqlConnection connection;
 
         /// <summary>
-        /// コンストラクタ
+        /// DB接続を行うコンストラクタ
         /// </summary>
         public Model()
         {

@@ -4,12 +4,15 @@ using System.Text;
 
 namespace LunchTimeApp
 {
-    class DeleteShopModel:Model
+    /// <summary>
+    /// 店舗削除クラス
+    /// </summary>
+    class DeleteShopModel : Model
     {
         /// <summary>
         /// 選択された店舗に削除フラグを立てるメソッド
         /// </summary>
-        /// <param name="shop"></param>
+        /// <param name="shop">選択された店舗</param>
         public void DeleteShop(string shop)
         {
             try

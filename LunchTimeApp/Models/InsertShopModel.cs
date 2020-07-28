@@ -4,13 +4,16 @@ using System.Text;
 
 namespace LunchTimeApp
 {
-    class InsertShopModel:Model
+    /// <summary>
+    /// 店舗登録モデル
+    /// </summary>
+    class InsertShopModel : Model
     {
         /// <summary>
         /// 入力された店舗とジャンルをDBに登録する
         /// </summary>
-        /// <param name="genreID"></param>
-        /// <param name="shopName"></param>
+        /// <param name="genreID">入力された店舗のID</param>
+        /// <param name="shopName">入力された店舗の名前</param>
         public void InsertShop(string genreID, string shopName)
         {
             try
