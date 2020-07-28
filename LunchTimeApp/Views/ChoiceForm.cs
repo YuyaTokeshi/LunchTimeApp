@@ -1,6 +1,7 @@
 ﻿using LunchTimeApp.Models.Model;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace LunchTimeApp
@@ -21,11 +22,8 @@ namespace LunchTimeApp
         {
             try
             {
-                GetGenreController getGenreController = new GetGenreController();
-                List<ItemSet> genreList = getGenreController.GetGenre();
-
-                // 「お任せ！」の値と表示名をリストに追加
-                genreList.Add(new ItemSet(0, "お任せ！"));
+                GetGenreAddOmakaseController getGenreAddOmakaseController = new GetGenreAddOmakaseController();
+                List<ItemSet> genreList = getGenreAddOmakaseController.GetGenreAddOmakase();
 
                 // 作成したリストの値と表示名をコンボボックスに代入
                 this.GenreComboBox.DataSource = genreList;
@@ -70,10 +68,15 @@ namespace LunchTimeApp
             // Listの中からランダムに1店舗表示
             ResultForm resultForm = new ResultForm();
             resultForm.Show();
-            Random random = new Random();
-            int i = random.Next(0, shop.Count);
-            string shopResult = shop[i].ItemDisp.ToString();
-            resultForm.ResultLabel.Text = shopResult;
+
+            string shopName = shop.OrderBy(_ => Guid.NewGuid()).First().ItemDisp.ToString();
+            resultForm.ResultLabel.Text = shopName;
+
+            // 旧ランダムコード
+            // Random random = new Random();
+            // int i = random.Next(0, shop.Count);
+            // string shopResult = shop[i].ItemDisp.ToString();
+            // resultForm.ResultLabel.Text = shopResult;
         }
 
         private void BackButton_Click(object sender, EventArgs e)

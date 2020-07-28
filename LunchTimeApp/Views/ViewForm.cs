@@ -80,7 +80,7 @@ namespace LunchTimeApp
         private void InsertButton_Click(object sender, EventArgs e)
         {
             // 店舗名が入力されていない場合の例外スロー
-            if (this.ShopNameTextBox.Text == "")
+            if (string.IsNullOrEmpty(this.ShopNameTextBox.Text))
             {
                 MessageBox.Show("店舗名を入力してください。", "エラー");
                 return;

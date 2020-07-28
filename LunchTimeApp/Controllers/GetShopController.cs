@@ -16,12 +16,12 @@ namespace LunchTimeApp
                 DataSet ShopList = shopModel.GetShop(genre);
 
                 DataTable shop = ShopList.Tables["GETSHOP_TBL"];
-                List<ItemSet> shopList = shop.AsEnumerable().Select(row => new ItemSet((int)row[0], row[1].ToString())).ToList<ItemSet>();
+                List<ItemSet> shopList = shop.AsEnumerable().Select(row => new ItemSet((int)row[0], row[1].ToString())).ToList();
                 return shopList;
             }
-            catch
+            catch(Exception ex)
             {
-                throw new Exception();
+                throw new Exception(ex.Message);
             }
         }
     }

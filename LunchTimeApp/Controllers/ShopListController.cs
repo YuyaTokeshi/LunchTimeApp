@@ -17,7 +17,7 @@ namespace LunchTimeApp
                 List<ItemSet> shopList = 
                     shop.AsEnumerable()                                          // Enumerable型に変換
                     .Select(row => new ItemSet((int)row[0], row[1].ToString()))  // DataRow型の要素を取り出し、ItemSet型に詰め替え
-                    .ToList<ItemSet>();                                          // List<ItemSet>型に変換
+                    .ToList();                                          // List<ItemSet>型に変換
                 return shopList;
             }
             catch(Exception ex)
